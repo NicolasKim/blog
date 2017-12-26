@@ -1,0 +1,48 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>DreamTracer's</title>
+
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta charset="utf-8">
+	<meta name="author" content="">
+	<!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Favicons -->
+{#	<link rel="shortcut icon" href="{% static 'common/images/favicon.png' %}">#}
+{#	<link rel="apple-touch-icon" href="{% static 'common/images/apple-touch-icon.png' %}">#}
+{#	<link rel="apple-touch-icon" sizes="72x72" href="{% static 'common/images/apple-touch-icon-72x72.png' %}">#}
+{#	<link rel="apple-touch-icon" sizes="114x114" href="{% static 'common/images/apple-touch-icon-114x114.png' %}">#}
+
+	<!-- CSS -->
+	<link rel="stylesheet" href="{% static 'common/css/fonts/font-awesome.css' %}">
+	<link rel="stylesheet" href="{% static 'common/css/plugins.css' %}">
+	<link rel="stylesheet" href="{% static 'common/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'common/css/default.css' %}">
+    <link rel="stylesheet" href="{% static 'common/css/github.css' %}">
+	<link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500,700,900%7CMontserrat:400,700%7CLora:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+
+</head>
+<body>
+
+    {% include 'header.html' %}
+
+	<div id="main">
+        {% block main %}
+
+        {% endblock main %}
+    </div>
+
+	{% include 'footer.html' %}
+
+	<!-- JavaScript -->
+	<script type="text/javascript" src="{% static 'common/javascript/jquery-1.11.3.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'common/javascript/plugins.js' %}"></script>
+	<script type="text/javascript" src="{% static 'common/javascript/main.js' %}"></script>
+
+</body>
+</html>

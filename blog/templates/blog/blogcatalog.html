@@ -1,0 +1,13 @@
+{% extends 'sidebar.html' %}
+{% block extension %}
+    <div class="widget">
+        <h3 class="widget-title">
+            <span class="widget-title-line"></span>
+            <span class="widget-title-text">Catelog</span>
+        </h3>
+        <div class="widget-content">
+            {{ blog_detail.toc  | safe }}
+        </div>
+    </div>
+{% endblock extension %}
+
