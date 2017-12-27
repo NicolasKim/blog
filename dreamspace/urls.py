@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from dreamspace import views
 urlpatterns = [
+    url(r'^accounts/', include('allauth.urls')),
     path('admin/', admin.site.urls),
     url(r'^$', views.index),
     url(r'^blog/', include('blog.urls',namespace='blog')),

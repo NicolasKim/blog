@@ -886,6 +886,9 @@ select {
 		-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
 		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
 	}
+	.white-wrap .content-center {
+		text-align: center;
+	}
 
 /**
  * # Blog Posts
@@ -1239,6 +1242,18 @@ select {
 
 				.comment-author-avatar img {
 					border-radius: 50%;
+					width: 30px;
+					height: 30px;
+				}
+				.comment-author-avatar span {
+					border-radius: 50%;
+					width: 30px;
+					height: 30px;
+					display: block;
+					text-align: center;
+					background-color: #fb717c;
+					color: white;
+					font-weight: 700;
 				}
 
 			.comment-inner {

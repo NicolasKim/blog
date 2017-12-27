@@ -1,6 +1,9 @@
-{% extends 'base.html' %}
+{% extends 'dsbase.html' %}
 
 {% load staticfiles %}
+{% load account %}
+{% load socialaccount %}
+{% load comment_tags %}
 
 {% block main %}
     <div class="wrapper clearfix">
@@ -58,24 +61,76 @@
 
 				</div><!-- .blog-post -->
 
+                <div id="leave-comment">
 
+					<div class="white-wrap">
+                        {% if user.is_active %}
+                            <div class="section-heading">
+                                <span class="section-heading-line"></span>
+                                <span class="section-heading-text">Leave a comment</span>
+                            </div><!-- .section-heading -->
+
+                            <form action="{% url 'comment:post_comment' blog_detail.pk %}" method="post">
+                                {% csrf_token %}
+                                {{ blog_detail.form.text.errors }}
+                                <div class="leave-comment-message">
+                                    <textarea name="text" placeholder="COMMENT" aria-required="true"
+                                              id="{{ blog_detail.form.id_for_textarea }}"></textarea>
+                                </div><!-- .leave-comment-message -->
+
+                                <div class="leave-comment-submit">
+                                    <input name="submit" type="submit" id="submit" class="submit" value="COMMENT"/>
+                                </div><!-- .leave-comment-submit -->
+                            </form>
+                        {% else %}
+                            <div class="section-heading">
+                                <span class="section-heading-line"></span>
+                                <span class="section-heading-text">Login and leave message</span>
+                            </div><!-- .section-heading -->
+                            <div class="content-center">
+                                {% get_providers as socialaccount_providers %}
+                                {% for provider in socialaccount_providers %}
+                                    {% if provider.id == 'weibo' %}
+                                        <a href="{% provider_login_url provider.id %}" class="button orange">{{ provider.name }}</a>
+                                    {% elif provider.id == 'github' %}
+                                        <a href="{% provider_login_url provider.id %}" class="button black">{{ provider.name }}</a>
+                                    {% elif provider.id == 'google' %}
+                                        <a href="{% provider_login_url provider.id %}" class="button red">{{ provider.name }}</a>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+
+
+
+
+					</div><!-- .white-wrap -->
+
+				</div><!-- #leave-comment -->
 
 				<div id="comments">
 
 					<div class="white-wrap">
 
 						<ol class="comments">
-                            {% for comment in blog_detail.comment_set.all %}
-                                <li class="comment">
 
-								<span class="comment-author-avatar"><img src="{{ blog_detail.author.userprofile.avatar_url }}" alt="" /></span>
+                            {% get_comments blog_detail as comments %}
+
+                            {% for comment in comments %}
+                                <li class="comment">
+                                {% if comment.user.socialaccount_set.count > 0 %}
+                                    <span class="comment-author-avatar"><img src="{{ comment.user.socialaccount_set.all.0.get_avatar_url }}" alt="" /></span>
+                                {% else %}
+                                    <div class="comment-author-avatar"><span>{{ comment.user.username | slice:':1' }}</span></div>
+                                {% endif %}
 
 								<div class="comment-inner">
 
 									<div class="comment-info clearfix">
 
 										<div class="comment-meta">
-											<span class="comment-meta-author">{{ comment.user.name }}</span>
+											<span class="comment-meta-author">{{ comment.user.username }}</span>
 											<span class="comment-meta-date">{{ comment.created_time }}</span>
 										</div><!-- .comment-meta -->
 
@@ -104,30 +159,7 @@
 
 				</div><!-- #comments -->
 
-				<div id="leave-comment">
 
-					<div class="white-wrap">
-
-						<div class="section-heading">
-							<span class="section-heading-line"></span>
-							<span class="section-heading-text">Leave a comment</span>
-						</div><!-- .section-heading -->
-
-						<form action="{% url 'comment:post_comment' blog_detail.pk %}" method="post">
-                            {% csrf_token %}
-                            {{ blog_detail.form.text.errors }}
-							<div class="leave-comment-message">
-								<textarea name="text" placeholder="COMMENT" aria-required="true" id="{{ blog_detail.form.id_for_textarea }}"></textarea>
-							</div><!-- .leave-comment-message -->
-
-							<div class="leave-comment-submit">
-								<input name="submit" type="submit" id="submit" class="submit" value="COMMENT" />
-							</div><!-- .leave-comment-submit -->
-						</form>
-
-					</div><!-- .white-wrap -->
-
-				</div><!-- #leave-comment -->
 
 			</div><!-- #content -->
 

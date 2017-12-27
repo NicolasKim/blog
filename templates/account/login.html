@@ -1,0 +1,17 @@
+{% extends 'dsbase.html' %}
+{% load account %}
+{% load socialaccount %}
+
+
+{% block main %}
+    {% get_providers as socialaccount_providers %}
+    {% for provider in socialaccount_providers %}
+        {% if provider.id == 'weibo' %}
+            <a href="#" class="button orange">{{ provider.name }}</a>
+        {% elif provider.id == 'github' %}
+            <a href="#" class="button black">{{ provider.name }}</a>
+        {% elif provider.id == 'google' %}
+            <a href="#" class="button red">{{ provider.name }}</a>
+        {% endif %}
+    {% endfor %}
+{% endblock main %}

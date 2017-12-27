@@ -42,7 +42,26 @@ INSTALLED_APPS = [
     'blog',
     'comment',
     'userinfo',
+# The following apps are required:
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    # 'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.github',
+    'allauth.socialaccount.providers.google',
+    # 'allauth.socialaccount.providers.instagram',
+    # 'allauth.socialaccount.providers.kakao',
+    # 'allauth.socialaccount.providers.line',
+    # 'allauth.socialaccount.providers.linkedin',
+    # 'allauth.socialaccount.providers.linkedin_oauth2',
+    # 'allauth.socialaccount.providers.naver',
+    # 'allauth.socialaccount.providers.twitter',
+    'allauth.socialaccount.providers.weibo',
+    # 'allauth.socialaccount.providers.weixin',
 ]
+
+SITE_ID = 1
 
 
 MIDDLEWARE = [
@@ -75,6 +94,15 @@ TEMPLATES = [
         },
     },
 ]
+
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+
 
 WSGI_APPLICATION = 'dreamspace.wsgi.application'
 
