@@ -10,7 +10,7 @@
 				<div class="blog-posts clearfix">
 
                     {% for blog in blog_list %}
-                        <div class="blog-post">
+                        <div class="base-wrapper">
                             {% if blog.cover_image %}
                             <div class="blog-post-thumb">
                                 <a href="{{ blog.get_absolute_url }}"><img src="{{ blog.cover_image }}" alt=""/></a>

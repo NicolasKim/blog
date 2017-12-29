@@ -122,7 +122,7 @@
                                 {% if comment.user.socialaccount_set.count > 0 %}
                                     <span class="comment-author-avatar"><img src="{{ comment.user.socialaccount_set.all.0.get_avatar_url }}" alt="" /></span>
                                 {% else %}
-                                    <div class="comment-author-avatar"><span>{{ comment.user.username | slice:':1' }}</span></div>
+                                    <div class="comment-author-avatar"><span>{{ comment.user.username | slice:':1' | upper }}</span></div>
                                 {% endif %}
 
 								<div class="comment-inner">
