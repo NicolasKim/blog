@@ -27,7 +27,7 @@ SECRET_KEY = '!-a(h!axn2nx0gsifmdz@t6ag-xl7h37#&ul!9p%7@#5nc-1hf'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost ', '.dreamtracer.top']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'www.dreamtracer.top']
 
 
 # Application definition
