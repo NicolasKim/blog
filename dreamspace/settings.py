@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '!-a(h!axn2nx0gsifmdz@t6ag-xl7h37#&ul!9p%7@#5nc-1hf'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'www.dreamtracer.top']
 
@@ -82,7 +82,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR, 'templates'),
-                 os.path.join(BASE_DIR, 'blog/templates/blog')]
+                 os.path.join(BASE_DIR, 'blog/templates')]
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -158,9 +158,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 # 加入下面的配置
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
-    # os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'static'),
     os.path.join(BASE_DIR, 'blog/static'),
 ]
 
