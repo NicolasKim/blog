@@ -1,6 +1,6 @@
 {% load staticfiles %}
 {% load blog_tags %}
-<div id="sidebar" class="col col-4 col-last">
+<div id="sidebar" class="col-xs-12 col-sm-12 col-md-3 col-md-3">
     {% block extension %}
 
     {% endblock extension %}
@@ -8,7 +8,7 @@
 
     {% get_recent_posts as recent_post_list %}
     {% if recent_post_list.count > 0 %}
-        <div class="widget">
+        <div class="widget card-base">
             <h3 class="widget-title">
                 <span class="widget-title-line"></span>
                 <span class="widget-title-text">Recent Posts</span>
@@ -25,13 +25,13 @@
                                 </div><!-- .recent-posts-widget-thumb -->
                             {% endif %}
                             <div class="recent-posts-widget-main">
-                                <div class="recent-posts-widget-date">{{ blog.created_time }}</div>
+{#                                <div class="recent-posts-widget-date">{{ blog.created_time }}</div>#}
                                 <div class="recent-posts-widget-title">
                                     <a href="{{ blog.get_absolute_url }}">{{ blog.title }}</a>
                                 </div>
-                                <div class="recent-posts-widget-category">
-                                    <a href="{% url 'blog:category-list' blog.category.pk %}">{{ blog.category.name }}</a>
-                                </div>
+{#                                <div class="recent-posts-widget-category">#}
+{#                                    <a class="tag" href="{% url 'blog:category-list' blog.category.pk %}">{{ blog.category.name }}</a>#}
+{#                                </div>#}
                             </div><!-- .recent-posts-widget-main -->
                         </div><!-- .recent-posts-widget-post -->
                     {% endfor %}
@@ -44,7 +44,7 @@
 
     {% get_categorys as category_list %}
     {% if category_list.count > 0 %}
-        <div class="widget">
+        <div class="widget card-base">
             <h3 class="widget-title">
                 <span class="widget-title-line"></span>
                 <span class="widget-title-text">Categorys</span>
@@ -52,7 +52,7 @@
             <div class="widget-content">
                 <div class="tags-cloud-widget">
                     {% for category in category_list %}
-                        <a href="{% url 'blog:category-list' category.pk %}">{{ category.name }}</a>
+                        <a class="tag" href="{% url 'blog:category-list' category.pk %}">{{ category.name }}</a>
                     {% endfor %}
                 </div><!-- .tags-cloud-widget -->
             </div><!-- .widget-content -->
@@ -62,7 +62,7 @@
 
     {% get_tags as tag_list %}
     {% if tag_list.count > 0 %}
-        <div class="widget">
+        <div class="widget card-base">
 
             <h3 class="widget-title">
                 <span class="widget-title-line"></span>
@@ -72,7 +72,7 @@
             <div class="widget-content">
                 <div class="tags-cloud-widget">
                     {% for tag in tag_list %}
-                        <a href="{% url 'blog:tag-list' tag.pk %}">{{ tag.name }}</a>
+                        <a class="category" href="{% url 'blog:tag-list' tag.pk %}">{{ tag.name }}</a>
                     {% endfor %}
                 </div><!-- .tags-cloud-widget -->
             </div><!-- .widget-content -->

@@ -192,7 +192,8 @@ class BlogDetail(DetailView):
             'markdown.extensions.codehilite',
             'markdown.extensions.toc',
         ])
-
+        # 阅读量 +1
+        bd.increase_views()
         bd.body = md.convert(bd.body)
         bd.toc = md.toc
         return bd

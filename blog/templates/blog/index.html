@@ -3,88 +3,85 @@
 
 
 {% block main %}
-    <div class="wrapper clearfix">
-
-			<div id="content" class="col col-8">
-
-				<div class="blog-posts clearfix">
-
-                    {% for blog in blog_list %}
-                        <div class="base-wrapper">
-                            {% if blog.cover_image %}
+    <div class="container-full">
+        <div class="col-xs-12 col-sm-12 col-md-9 col-md-9">
+            <div>
+                {% for blog in blog_list %}
+                    <div class="blog-post card-base">
+                        {% if blog.cover_image %}
                             <div class="blog-post-thumb">
                                 <a href="{{ blog.get_absolute_url }}"><img src="{{ blog.cover_image }}" alt=""/></a>
                             </div><!-- .blog-post-thumb -->
-                            {% endif %}
-
-                            <div class="blog-post-main clearfix">
-                                <div class="blog-post-info">
-                                    <div class="blog-post-info-inner">
-                                        <div class="blog-post-title">
-                                            <h2><a href="{{ blog.get_absolute_url }}">{{ blog.title }}</a></h2>
-                                        </div><!-- .blog-post-title -->
-
-                                        <div class="blog-post-meta">
-                                            {{ blog.created_time }}, In:
-                                            <a href="{% url 'blog:category-list' blog.category.pk %}">{{ blog.category.name }}</a>
-                                        </div><!-- .blog-post-meta -->
-
-                                        <div class="blog-post-excerpt">
-                                            {{ blog.excerpt }}
-                                        </div><!-- .dslc-blog-post-excerpt -->
-
-                                        <div class="blog-post-read-more">
-                                            <a href="{{ blog.get_absolute_url }}">CONTINUE READING</a>
-                                        </div><!-- .blog-post-read-more -->
-
-                                    </div><!-- .blog-post-info-inner -->
-
-                                </div><!-- .blog-post-info -->
-
-                            </div><!-- .blog-post-main -->
-
-                        </div><!-- .blog-post -->
-
-                    {% empty %}
-                        <div>Empty</div>
-                    {% endfor %}
-				</div><!-- .blog-posts -->
-
-
-                {% if is_paginated %}
-                    <div class="pagination">
-                        {% if first %}
-                            <a href="?page=1">1</a>
                         {% endif %}
-                        {% if left %}
-                            {% if left_has_more %}
-                                <span>...</span>
-                            {% endif %}
-                            {% for i in left %}
-                                <a href="?page={{ i }}">{{ i }}</a>
-                            {% endfor %}
+
+                        <div class="blog-post-main">
+                            <div class="blog-post-title">
+                                <h2><a href="{{ blog.get_absolute_url }}">{{ blog.title }}</a></h2>
+                            </div><!-- .blog-post-title -->
+
+                            <div class="blog-post-meta">
+                                {{ blog.created_time }}, In:
+                                <a class="tag"
+                                   href="{% url 'blog:category-list' blog.category.pk %}">{{ blog.category.name }}</a>
+                            </div><!-- .blog-post-meta -->
+
+                            <div class="blog-post-excerpt">
+                                {{ blog.excerpt }}
+                            </div><!-- .dslc-blog-post-excerpt -->
+
+                            <div class="blog-post-statistics">
+                                <a class="img-text" href="{{ blog.get_absolute_url }}">
+                                    <span class="glyphicon glyphicon-eye-open"></span>
+                                    <span class="text">{{ blog.views }}</span>
+                                </a>
+                                <a class="img-text" href="{{ blog.get_absolute_url }}#comments">
+                                    <span class="glyphicon glyphicon-comment"></span>
+                                    <span class="text">{{ blog.comment_set.count }}</span>
+                                </a>
+{#                                <a class="img-text" href="{{ blog.get_absolute_url }}">#}
+{#                                    <span class="glyphicon glyphicon-heart-empty"></span>#}
+{#                                    <span class="text">11</span>#}
+{#                                </a>#}
+                            </div><!-- .blog-post-read-more -->
+                        </div><!-- .blog-post-main -->
+
+                    </div><!-- .blog-post -->
+
+                {% empty %}
+                    <div>Empty</div>
+                {% endfor %}
+            </div>
+            {% if is_paginated %}
+                <div class="pagination">
+                    {% if first %}
+                        <a href="?page=1">1</a>
+                    {% endif %}
+                    {% if left %}
+                        {% if left_has_more %}
+                            <span>...</span>
                         {% endif %}
-                        <a href="?page={{ page_obj.number }}" class="current-pagination-item">{{ page_obj.number }}</a>
-                        {% if right %}
-                            {% for i in right %}
-                                <a href="?page={{ i }}">{{ i }}</a>
-                            {% endfor %}
-                            {% if right_has_more %}
-                                <span>...</span>
-                            {% endif %}
+                        {% for i in left %}
+                            <a href="?page={{ i }}">{{ i }}</a>
+                        {% endfor %}
+                    {% endif %}
+                    <a href="?page={{ page_obj.number }}" class="current-pagination-item">{{ page_obj.number }}</a>
+                    {% if right %}
+                        {% for i in right %}
+                            <a href="?page={{ i }}">{{ i }}</a>
+                        {% endfor %}
+                        {% if right_has_more %}
+                            <span>...</span>
                         {% endif %}
-                        {% if last %}
-                            <a href="?page={{ paginator.num_pages }}">{{ paginator.num_pages }}</a>
-                        {% endif %}
-                    </div>
-                {% endif %}
+                    {% endif %}
+                    {% if last %}
+                        <a href="?page={{ paginator.num_pages }}">{{ paginator.num_pages }}</a>
+                    {% endif %}
+                </div>
+            {% endif %}
+        </div><!-- .blog-posts -->
 
 
+        {% include 'blog/sidebar.html' %}
+    </div>
 
-
-			</div><!-- #content -->
-
-			{% include 'blog/sidebar.html' %}
-
-		</div><!-- .wrapper -->
 {% endblock main %}

@@ -25,14 +25,14 @@
 {#	<link rel="stylesheet" href="{% static 'common/css/fonts/font-awesome.css' %}">#}
 {#	<link rel="stylesheet" href="{% static 'common/css/plugins.css' %}">#}
 	<link rel="stylesheet" href="{% static 'common/css/dsmain.css' %}">
-    <link rel="stylesheet" href="{% static 'common/css/default.css' %}">
-    <link rel="stylesheet" href="{% static 'common/css/github.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/default.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/github.css' %}">
 	<link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500,700,900%7CMontserrat:400,700%7CLora:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
 
 </head>
 <body>
 
-    {% include 'blog/header.html' %}
+    {% include 'header.html' %}
 
         <div id="main">
             {% block main %}
@@ -40,7 +40,7 @@
             {% endblock main %}
         </div>
 
-	{% include 'blog/footer.html' %}
+{#	{% include 'footer.html' %}#}
 
 	<!-- JavaScript -->
 {#	<script type="text/javascript" src="{% static 'common/javascript/jquery-1.11.3.min.js' %}"></script>#}

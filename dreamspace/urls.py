@@ -17,10 +17,13 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path, include
 from dreamspace import views
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
     url(r'^accounts/', include('allauth.urls')),
     path('admin/', admin.site.urls),
     url(r'^$', views.index),
     url(r'^blog/', include('blog.urls',namespace='blog')),
     url(r'^comment/', include('comment.urls',namespace='comment'))
-]
+]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
