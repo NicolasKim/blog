@@ -14,16 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.conf.urls import url
-from django.contrib import admin
-from django.urls import path, include
-from dreamspace import views
-from django.conf import settings
-from django.conf.urls.static import static
+from django.urls import include
+from dreamspace import routers
 
 urlpatterns = [
-    url(r'^accounts/', include('allauth.urls')),
-    path('admin/', admin.site.urls),
-    url(r'^$', views.index),
-    url(r'^blog/', include('blog.urls',namespace='blog')),
-    url(r'^comment/', include('comment.urls',namespace='comment'))
-]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^api-user/', include(routers.router.urls)),
+    url(r'^api-blog/', include('blog.urls', namespace='blog')),
+    url(r'^api-comment/', include('comment.urls', namespace='comment')),
+]

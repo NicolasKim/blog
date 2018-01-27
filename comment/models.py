@@ -6,7 +6,7 @@ from django.db import models
 class Comment(models.Model):
     text = models.TextField()
     created_time = models.DateTimeField(auto_now_add=True)
-    post = models.ForeignKey('blog.Post',on_delete=models.CASCADE)
+    post = models.ForeignKey('blog.Post',related_name='comments',on_delete=models.CASCADE)
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     parent = models.ForeignKey('self',blank=True,null=True,related_name='child',on_delete=models.CASCADE)
     def __str__(self):

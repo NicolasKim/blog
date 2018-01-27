@@ -19,13 +19,10 @@ class Post(models.Model):
     created_time = models.DateTimeField()
     modified_time = models.DateTimeField()
     excerpt = models.CharField(max_length=200, blank=True)
-    category = models.ForeignKey(Category,on_delete=models.CASCADE)
-    tags = models.ManyToManyField(Tag, blank=True)
-    author = models.ForeignKey(User,on_delete=models.CASCADE)
+    category = models.ForeignKey(Category,related_name='post',on_delete=models.CASCADE)
+    tags = models.ManyToManyField(Tag,related_name='post', blank=True)
+    author = models.ForeignKey(User,related_name='post',on_delete=models.CASCADE)
     views = models.PositiveIntegerField(default=0)
-
-    def get_absolute_url(self):
-        return reverse('blog:blog-detail', kwargs={'pk': self.pk})
 
     def increase_views(self):
         self.views += 1

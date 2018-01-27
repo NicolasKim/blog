@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '!-a(h!axn2nx0gsifmdz@t6ag-xl7h37#&ul!9p%7@#5nc-1hf'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'www.dreamtracer.top']
 
@@ -60,10 +60,18 @@ INSTALLED_APPS = [
     # 'allauth.socialaccount.providers.twitter',
     'allauth.socialaccount.providers.weibo',
     # 'allauth.socialaccount.providers.weixin',
+    'rest_framework',
 ]
 
 SITE_ID = 1
 
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
